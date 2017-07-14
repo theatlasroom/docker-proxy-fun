@@ -1,0 +1,23 @@
+version: '2'
+services:
+  # configure our application
+  web:
+    build: .
+    command: npm start
+    volumes:
+      - .:/usr/ma-man
+      - /usr/ma-man/node_modules
+    ports:
+      - "8889:8889"
+    depends_on:
+      - postgres
+    environment:
+      PORT: 8889
+      DATABASE_URL: postgres://maman@postgres/maman
+  # configure database service
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: mamanapp
+      POSTGRES_DB: maman
+      POSTGRES_PASSWORD: 'yeah m88888'
