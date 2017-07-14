@@ -4,9 +4,9 @@ const path = require('path')
 const port = process.env.PORT
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'))
+  res.sendFile(path.join(__dirname, 'ma-man.html'))
 })
 
 app.listen(port, function () {
-  console.log(`GOOD-JOB app listening on port ${port}!`)
+  console.log(`MA-MAN app listening on port ${port}!`)
 })
