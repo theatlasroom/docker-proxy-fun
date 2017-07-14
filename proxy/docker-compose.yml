@@ -11,6 +11,8 @@ services:
       # allows to tap into events such as creating / shutting down a container
       # nginx-proxy will look for containers with the VIRTUAL_HOST variable enabled
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    # environment:
+    #   DEFAULT_HOST: goodjob.app
 # use our docker network
 networks:
   default:

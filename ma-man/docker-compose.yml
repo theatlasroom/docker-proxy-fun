@@ -7,13 +7,18 @@ services:
     volumes:
       - .:/usr/ma-man
       - /usr/ma-man/node_modules
-    ports:
-      - "8889:8889"
+    # ports:
+    #   - "8889:8889"
+    expose:
+      - 80
     depends_on:
       - postgres
     environment:
-      PORT: 8889
+      VIRTUAL_HOST: maman.app
+      VIRTUAL_PORT: 8889
+      PORT: 80
       DATABASE_URL: postgres://maman@postgres/maman
+    container_name: ma_man_app
   # configure database service
   postgres:
     image: postgres:9.6.2-alpine
@@ -21,3 +26,9 @@ services:
       POSTGRES_USER: mamanapp
       POSTGRES_DB: maman
       POSTGRES_PASSWORD: 'yeah m88888'
+
+# specify the network to use
+networks:
+  default:
+    external:
+      name: nginx-proxy

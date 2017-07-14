@@ -8,14 +8,17 @@ services:
       # mount paths between the host and the container
       - .:/usr/app/ # mount the root directory to our working directory inside the container
       - /usr/app/node_modules # mount the buildtime node_modules directory to the host machine
-    ports:
-      - "8888:8888"
+    expose:
+      - 80
     depends_on:
       - postgres
     # set some envvars
     environment:
-      PORT: 8888
+      VIRTUAL_HOST: goodjob.app
+      VIRTUAL_PORT:  8080
+      PORT: 80
       DATABASE_URL: postgres://goodjob@postgres/goodjob
+    container_name: good_job_app
   # database service
   postgres:
     # image lets us specify a prebuilt image to use
@@ -24,3 +27,9 @@ services:
       POSTGRES_USER: goodjobapp
       POSTGRES_DB: goodjob
       POSTGRES_PASSWORD: 'yeeeeew'
+
+# specify the network to use
+networks:
+  default:
+    external:
+      name: nginx-proxy

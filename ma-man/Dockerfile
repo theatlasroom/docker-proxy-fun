@@ -9,3 +9,5 @@ COPY . .
 
 # run npm install
 RUN npm install
+
+EXPOSE 80
