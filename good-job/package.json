@@ -1,5 +1,15 @@
 {
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "express": "^4.15.3"
-  }
+  },
+  "name": "good-job",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
