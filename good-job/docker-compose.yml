@@ -1,0 +1,25 @@
+version: '2'
+services:
+  # web service
+  web:
+    build: .  # use the dockerfile to build our image
+    command: npm start # start the application
+    volumes:
+      # mount paths between the host and the container
+      - .:/usr/app/ # mount the root directory to our working directory inside the container
+      - /usr/app/node_modules # mount the buildtime node_modules directory to the host machine
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+    # set some envvars
+    environment:
+      DATABASE_URL: postgres://goodjob@postgres/goodjob
+  # database service
+  postgres:
+    # image lets us specify a prebuilt image to use
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: goodjobapp
+      POSTGRES_DB: goodjob
+      POSTGRES_PASSWORD: 'yeeeeew'
