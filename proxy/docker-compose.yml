@@ -1,0 +1,18 @@
+version: "3"
+services:
+  # define our nginx service
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: proxy
+    ports:
+      - "80:80"
+    volumes:
+      # provides any container access tot he hosts Docker socket
+      # allows to tap into events such as creating / shutting down a container
+      # nginx-proxy will look for containers with the VIRTUAL_HOST variable enabled
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+# use our docker network
+networks:
+  default:
+    external:
+      name: nginx-proxy
