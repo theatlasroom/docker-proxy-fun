@@ -9,10 +9,3 @@ COPY . .
 
 # Install any needed packages specified in package.json
 RUN npm install
-
-# Expose the port our app is listening on
-EXPOSE 8888
-
-
-# run the app when the container launches
-# CMD ["npm", "start"]
